@@ -1,9 +1,7 @@
 package org.drg.controller.impl;
 
-import org.drg.model.dto.request.UserRequestDto;
-import org.drg.model.dto.response.UserResponseDto;
 import org.drg.model.entity.UserEntity;
-import org.drg.repository.UserRepository;
+import org.drg.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,16 +18,16 @@ import java.util.Map;
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @GetMapping("/users")
     public List<UserEntity> getUsers() {
-        return (List<UserEntity>) userRepository.findAll();
+        return (List<UserEntity>) userService.findAll();
     }
 
     @PostMapping("/users")
     ResponseEntity<String> addUser(@Valid @RequestBody UserEntity user) {
-        userRepository.save(user);
+        userService.saveUser(user);
         return ResponseEntity.ok("User is valid");
     }
 
