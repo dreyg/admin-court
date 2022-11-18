@@ -2,6 +2,7 @@ package org.drg;
 
 import org.drg.model.entity.UserEntity;
 import org.drg.repository.UserRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,6 +29,11 @@ public class App
             userRepository.save(user2);
             userRepository.findAll().forEach(System.out::println);
         };
+    }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 
 }

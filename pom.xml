@@ -8,11 +8,13 @@
   <packaging>jar</packaging>
   <name>admin-court</name>
   <version>1.0-SNAPSHOT</version>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <springfox-version>3.0.0</springfox-version>
+    <modelmapper.version>2.4.5</modelmapper.version>
   </properties>
 
   <parent>
@@ -30,8 +32,8 @@
     </plugins>
   </build>
 
-  <dependencies>
 
+  <dependencies>
     <!-- web -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -110,6 +112,14 @@
       <version>1.18.20</version>
       <scope>provided</scope>
     </dependency>
+
+    <!-- model mapper-->
+    <dependency>
+      <groupId>org.modelmapper</groupId>
+      <artifactId>modelmapper</artifactId>
+      <version>${modelmapper.version}</version>
+    </dependency>
+
     <!-- test -->
     <dependency>
       <groupId>org.springframework</groupId>
