@@ -1,4 +1,4 @@
-package org.drg.handlerError.dto;
+package org.drg.dtos;
 
 import lombok.Data;
 

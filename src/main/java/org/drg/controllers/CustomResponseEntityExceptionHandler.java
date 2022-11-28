@@ -1,7 +1,5 @@
-package org.drg.handlerError;
+package org.drg.controllers;
 
-import org.drg.exception.MyMethodInvalidArgumentException;
-import org.drg.exception.MyResourceNotFoundException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -10,20 +8,18 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.persistence.EntityNotFoundException;
-import java.security.Principal;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Locale;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
@@ -63,19 +59,17 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 */
 
 
-    @ExceptionHandler(value = {MyMethodInvalidArgumentException.class})
-    protected ResponseEntity<Object> handleValidationFormatFieldExceptions(MethodArgumentNotValidException ex, final WebRequest request){
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        //return handleExceptionInternal(errors, HttpStatus.BAD_REQUEST);
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+                                                                  HttpHeaders headers,
+                                                                  HttpStatus status,
+                                                                  WebRequest request) {
+        Map<String, List<String>> errors = new HashMap<>();
+        errors.put("errors", ex.getBindingResult().getAllErrors().stream()
+                .map(ObjectError::getDefaultMessage)
+                .collect(Collectors.toList()));
 
-        final String bodyOfResponse = "This should be application specific";
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-        //return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
     private ResponseEntity<Object> handleExceptionInternal(Map<String, String> errors, HttpStatus badRequest) {
@@ -84,7 +78,7 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
 
     // 404
 
-    @ExceptionHandler(value = { EntityNotFoundException.class, MyResourceNotFoundException.class })
+    @ExceptionHandler(value = { EntityNotFoundException.class})
     protected ResponseEntity<Object> handleNotFound(final RuntimeException ex, final WebRequest request) {
         final String bodyOfResponse = "This should be application specific";
         return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
