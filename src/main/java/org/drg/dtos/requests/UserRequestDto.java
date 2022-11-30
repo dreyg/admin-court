@@ -1,44 +1,39 @@
 package org.drg.dtos.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-11-02T19:44:59.902Z[GMT]")
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Builder
+@Data
 public class UserRequestDto {
 
-    private Long id;
-    @JsonProperty("username")
-    private String username;
-
-    @JsonProperty("password")
-    private String password;
+    @JsonProperty("name")
+    private String name;
 
     @JsonProperty("surname")
     private String surname;
 
-    @JsonProperty("alias")
-    private Object alias;
+    @JsonProperty("username")
+    private String username;
+
+    @JsonProperty("mail")
+    private String mail;
+    
+    @JsonProperty("password")
+    private String password;
 
     @JsonProperty("address")
-    private Object address;
+    private String address;
 
     @JsonProperty("floor")
-    private Object floor;
+    private String floor;
 
     @JsonProperty("door")
-    private Object door;
-
-    public UserRequestDto username(String username) {
-        this.username = username;
-        return this;
-    }
+    private String door;
 
 }

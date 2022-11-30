@@ -9,25 +9,30 @@ import lombok.Data;
 public class UserResponseDto {
 
     private Long id;
-    @JsonProperty("username")
-    private String username;
 
-    @JsonProperty("password")
-    private String password;
+    @JsonProperty("name")
+    private String name;
 
     @JsonProperty("surname")
     private String surname;
 
-    @JsonProperty("alias")
-    private Object alias;
+    @JsonProperty("username")
+    private String username;
+
+    @JsonProperty("mail")
+    private String mail;
+
+    @JsonProperty("password")
+    private String password;
 
     @JsonProperty("address")
-    private Object address;
+    private String address;
 
     @JsonProperty("floor")
-    private Object floor;
+    private String floor;
 
     @JsonProperty("door")
-    private Object door;
+    private String door;
+
 
 }

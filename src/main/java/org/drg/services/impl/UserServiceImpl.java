@@ -22,7 +22,14 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll().stream()
                 .map(user -> UserResponseDto.builder()
                         .id(user.getId())
-                        .username(user.getName())
+                        .name(user.getName())
+                        .surname(user.getSurname())
+                        .address(user.getAddress())
+                        .username(user.getUsername())
+                        .mail(user.getMail())
+                        .password(user.getPassword())
+                        .floor(user.getFloor())
+                        .door(user.getDoor())
                         .build())
                 .collect(Collectors.toList());
     }
