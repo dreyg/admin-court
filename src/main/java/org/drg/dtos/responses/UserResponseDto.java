@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Builder
 @Data
-public class UserResponseDto {
+public class UserResponseDto implements Comparable<UserResponseDto>{
 
     private Long id;
 
@@ -33,6 +33,12 @@ public class UserResponseDto {
 
     @JsonProperty("door")
     private String door;
+
+    @Override
+    public int compareTo(UserResponseDto obj)
+    {
+        return this.name.compareTo(obj.name);
+    }
 
 
 }
