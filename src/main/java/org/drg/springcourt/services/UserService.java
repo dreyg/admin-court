@@ -13,5 +13,4 @@ public interface UserService {
 
     UserResponseDto saveUser(UserRequestDto user);
 
-    Collection<UserResponseDto> findAllUsersSameStreet(UserRequestDto userRequestStreetDto);
 }

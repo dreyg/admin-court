@@ -3,7 +3,13 @@ package org.drg.springcourt.dtos.responses;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import java.util.List;
+
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @ToString
 public class UserResponseDto{
 
@@ -24,14 +30,8 @@ public class UserResponseDto{
     @JsonProperty("password")
     private String password;
 
-    /*@JsonProperty("address")
-    private List<AddressResponseDto> address;*/
-
-   /* @Override
-    public int compareTo(UserResponseDto obj)
-    {
-        return this.name.compareTo(obj.name);
-    }*/
+    @JsonProperty("address")
+    private List<AddressResponseDto> address;
 
     public UserResponseDto(Long id, String name, String surname, String username, String mail, String password) {
         this.id = id;
@@ -42,8 +42,12 @@ public class UserResponseDto{
         this.password = password;
     }
 
-    public UserResponseDto() {
-    }
+
+/* @Override
+    public int compareTo(UserResponseDto obj)
+    {
+        return this.name.compareTo(obj.name);
+    }*/
 
     public Long getId() {
         return id;
@@ -92,4 +96,14 @@ public class UserResponseDto{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<AddressResponseDto> getAddress() {
+        return address;
+    }
+
+    public void setAddress(List<AddressResponseDto> address) {
+        this.address = address;
+    }
+
+
 }

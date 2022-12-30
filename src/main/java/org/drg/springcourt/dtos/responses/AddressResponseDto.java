@@ -1,11 +1,14 @@
 package org.drg.springcourt.dtos.responses;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Builder
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class AddressResponseDto{
 
     @JsonProperty("address")

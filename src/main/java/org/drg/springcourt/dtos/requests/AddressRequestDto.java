@@ -1,15 +1,18 @@
 package org.drg.springcourt.dtos.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-11-02T19:44:59.902Z[GMT]")
 
 @Builder
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class AddressRequestDto {
 
     @JsonProperty("address")

@@ -1,5 +1,6 @@
 package org.drg.springcourt.controllers;
 
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -38,18 +39,6 @@ public class UserController {
         userService.saveUser(userRequestDto);
         return ResponseEntity.ok("User is valid");
     }
-
-    @Operation(summary = "Get only users by street")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Give all users from same street",
-                    content = {@Content(mediaType = "application/json",
-                            array = @ArraySchema(schema = @Schema(implementation = UserResponseDto.class)))})})
-    @GetMapping("/street")
-    public Collection<UserResponseDto> getUsersSameStreet(@RequestBody UserRequestDto userRequestStreetDto) {
-        return userService.findAllUsersSameStreet(userRequestStreetDto);
-    }
-
-
 
 }
 

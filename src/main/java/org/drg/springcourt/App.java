@@ -21,9 +21,6 @@ public class App
         return new BCryptPasswordEncoder();
     }*/
 
-    @Bean
-    public Mapper mapper() {
-        return new DozerBeanMapper(Arrays.asList("dozer_mapping.xml"));
-    }
+
 
 }

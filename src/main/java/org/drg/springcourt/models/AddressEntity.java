@@ -1,13 +1,18 @@
 package org.drg.springcourt.models;
 
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity (name = "address")
-@Data
 public class AddressEntity {
 
     @Id

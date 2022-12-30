@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
-@Mapper
+@Mapper(uses = AddressMapper.class)
 public interface UserMapper {
 
     List<UserResponseDto> map(List<UserEntity> userEntityList);
@@ -18,6 +18,8 @@ public interface UserMapper {
         userResponseDto.setMail(userEntity.getMail());
         userResponseDto.setSurname(userEntity.getSurname());
         userResponseDto.setUsername(userEntity.getUsername());
+
+        //userResponseDto.setAddress(userEntity.getAddress());
 
         return userResponseDto;
     }

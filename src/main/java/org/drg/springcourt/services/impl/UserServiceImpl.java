@@ -3,15 +3,16 @@ package org.drg.springcourt.services.impl;
 import org.drg.springcourt.configuration.UserMapper;
 import org.drg.springcourt.dtos.requests.UserRequestDto;
 import org.drg.springcourt.dtos.responses.UserResponseDto;
+import org.drg.springcourt.exceptions.UserWithSameUsernameException;
 import org.drg.springcourt.models.UserEntity;
 import org.drg.springcourt.repositories.UserRepository;
 import org.drg.springcourt.services.UserService;
 import org.mapstruct.factory.Mappers;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,8 +36,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDto saveUser(UserRequestDto userRequestDto) {
-        return null;
-       /* if (this.userRepository.existsByUsername(userRequestDto.getUsername())) {
+        if (this.userRepository.existsByUsername(userRequestDto.getUsername())) {
             throw new UserWithSameUsernameException();
         }
         UserEntity user = new UserEntity();
@@ -50,26 +50,8 @@ public class UserServiceImpl implements UserService {
                 .username(user.getUsername())
                 .mail(user.getMail())
                 .password(user.getPassword())
-                .build();*/
+               // .address(user.getAddress())
+                .build();
     }
-
-    @Override
-    public Collection<UserResponseDto> findAllUsersSameStreet(UserRequestDto userRequestStreetDto) {
-        //TODO rehacer esta funcionalidad
-        Collection<UserResponseDto> usersWithSameStreet = null; /*userRepository.findAll().stream()
-                .filter(userEntity -> userEntity.getAddress().contains(userRequestStreetDto.getAddress()))
-                .map(user -> UserResponseDto.builder()
-                        .id(user.getId())
-                        .name(user.getName())
-                        .surname(user.getSurname())
-                        .username(user.getUsername())
-                        .mail(user.getMail())
-                        .password(user.getPassword())
-                        .build())
-                .collect(Collectors.toList());*/
-
-        return usersWithSameStreet;
-    }
-
 
 }
