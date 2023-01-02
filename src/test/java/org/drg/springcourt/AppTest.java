@@ -1,4 +1,4 @@
-package org.drg;
+package org.drg.springcourt;
 
 import static org.junit.Assert.assertTrue;
 
