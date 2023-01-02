@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDto saveUser(UserRequestDto userRequestDto) {
-        if (this.userRepository.existsByUsername(userRequestDto.getUsername())) {
+        if (Boolean.TRUE.equals(this.userRepository.existsByUsername(userRequestDto.getUsername()))) {
             throw new UserWithSameUsernameException();
         }
         UserEntity user = new UserEntity();

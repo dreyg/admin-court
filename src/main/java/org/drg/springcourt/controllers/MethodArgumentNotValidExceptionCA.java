@@ -27,7 +27,7 @@ public class MethodArgumentNotValidExceptionCA extends ResponseEntityExceptionHa
                 .map(ObjectError::getDefaultMessage)
                 .collect(Collectors.toList()));
         
-        return new ResponseEntity<Object>(errors, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
 }
