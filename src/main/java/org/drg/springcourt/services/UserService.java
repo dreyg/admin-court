@@ -11,6 +11,9 @@ public interface UserService {
 
     Collection<UserResponseDto> findAll();
 
+    UserResponseDto findById(long userId);
+
     UserResponseDto saveUser(UserRequestDto user);
 
+    UserResponseDto findByUsername(String s);
 }

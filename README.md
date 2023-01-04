@@ -27,3 +27,17 @@ docker-compose -f docker-compose-mysql-only.yml down
 -- Seguridad en la APP.
 -> se genera el fichero keystore.jks
 -> se añade al proyecto (main/resources/keystore.jks)
+
+
+-- Añadir seguridad al proyecto:
+httpS:
+keytool -genkey -keyalg RSA -alias selfsigned -keystore keystore.jks -storepass password -validity 360 -keysize 2048
+keytool -importkeystore -srckeystore keystore.jks -destkeystore keystore.p12 -deststoretype pkcs12
+keytool -import -keystore $JAVA_HOME/jre/lib/security/cacerts -alias selfsigned -file DavidRey.cer
+password //// everywhere
+
+--1º Crear truestore, puede ser en formato jks o pkcs (más moderno, se suele usar este)
+--2º Cuando hacemos peticion a través de chrome, generamos el certificado y lo importamos dentro del cacerts.
+--3º Añadimos configuración en el servidor/API, modificando el properties y añadiendo clase de configuración.
+
+JWT:
