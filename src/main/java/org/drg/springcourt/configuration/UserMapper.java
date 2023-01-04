@@ -18,6 +18,7 @@ public interface UserMapper {
         userResponseDto.setMail(userEntity.getMail());
         userResponseDto.setSurname(userEntity.getSurname());
         userResponseDto.setUsername(userEntity.getUsername());
+        userResponseDto.setPassword(userEntity.getPassword());
 
         //userResponseDto.setAddress(userEntity.getAddress());
 

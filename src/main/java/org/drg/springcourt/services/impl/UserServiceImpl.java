@@ -40,8 +40,11 @@ public class UserServiceImpl implements UserService {
         UserEntity user = this.userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         return UserResponseDto.builder()
                 .id(user.getId())
+                .name(user.getName())
+                .surname(user.getSurname())
                 .username(user.getUsername())
                 .mail(user.getMail())
+                .password(user.getPassword())
                 .build();
     }
 
@@ -49,8 +52,11 @@ public class UserServiceImpl implements UserService {
         UserEntity user = this.userRepository.findByUsername(username).orElseThrow(UserNotFoundException::new);
         return UserResponseDto.builder()
                 .id(user.getId())
+                .name(user.getName())
+                .surname(user.getSurname())
                 .username(user.getUsername())
                 .mail(user.getMail())
+                .password(user.getPassword())
                 .build();
     }
 
