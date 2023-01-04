@@ -21,26 +21,11 @@ public class JWTController {
     @ResponseBody
     ResponseEntity<String> login(@Valid @RequestBody UserRequestDto userRequestDto) {
         HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("Bearer ",
-                jwtService.login(userRequestDto));
-
-        //String tokenJWT = jwtService.login(userRequestDto);
-
+        responseHeaders.set("Authorization","Bearer ".concat(jwtService.login(userRequestDto)));
         return ResponseEntity.ok()
                 .headers(responseHeaders)
-                .body("Response with header using ResponseEntity");
+                .body("Successful login");
     }
-
-    /*@GetMapping("/response-entity-builder-with-http-headers")
-    public ResponseEntity<String> usingResponseEntityBuilderAndHttpHeaders() {
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("Baeldung-Example-Header",
-                "Value-ResponseEntityBuilderWithHttpHeaders");
-
-        return ResponseEntity.ok()
-                .headers(responseHeaders)
-                .body("Response with header using ResponseEntity");
-    }*/
 
 
 }
