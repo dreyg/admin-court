@@ -43,12 +43,6 @@ public class UserResponseDto{
     }
 
 
-/* @Override
-    public int compareTo(UserResponseDto obj)
-    {
-        return this.name.compareTo(obj.name);
-    }*/
-
     public Long getId() {
         return id;
     }
